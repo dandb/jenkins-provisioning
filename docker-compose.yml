@@ -1,0 +1,17 @@
+version: "3.0"
+services:
+  jenkins:
+    build:
+      context: ./src/
+      dockerfile: Dockerfile.jenkins
+      args:
+        HTTP_PROXY: "$http_proxy"
+        HTTPS_PROXY: "$https_proxy"
+        NO_PROXY: "localhost"
+        JAVA_OPTS: "-Dhttp.proxyHost= -Dhttps.proxyHost= -Dhttps.proxyPort=8080 -Dhttp.proxyPort=8080"
+    image: jenkinsci/jenkins:lts
+    volumes:
+      - ./data/jenkins_home:/var/jenkins_home
+      - ./src/init.groovy.d:/var/jenkins_home/init.groovy.d/:ro
+    ports:
+      - "80:8080"

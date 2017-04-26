@@ -1,0 +1,12 @@
+From jenkinsci/jenkins:latest
+
+ARG HTTP_PROXY
+ARG HTTPS_PROXY
+ARG NO_PROXY
+ARG JAVA_OPTS
+
+ENV http_proxy="${HTTP_PROXY}"
+ENV https_proxy="${HTTPS_PROXY}" 
+ENV no_proxy="${NO_PROXY}"
+ENV JAVA_OPTS="$JAVA_OPTS"
+
